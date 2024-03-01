@@ -8,15 +8,15 @@
     <div class="container">
         <h1 class="heading">Login</h1>
         <div class="form-container">
-            <form class="form" id="userForm" method="post">
+            <form class="form" id="loginForm" method="post">
                 <input type="text" name="name" placeholder="Enter your name" class="input-field" required>
                 <input type="password" name="password" placeholder="Enter your password" class="input-field" required>
                 <button type="submit" class="submit-button">Submit</button>
             </form>
         </div>
         <button class="submit-button" onclick="window.location.href='register.html'">Register</button> 
+        <h1 id="errorMessage" class="error-message"></h1>
     </div>
-
-    <script src="front_end.js"></script>
+    <script type="module" src="login.js"></script>
 </body>
 </html>
