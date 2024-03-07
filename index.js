@@ -5,6 +5,8 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const path = require("path");
 const jwt = require('jsonwebtoken');
+const swaggerjsdoc = require('swagger-jsdoc');
+const swaggerui = require('swagger-ui-express');
 
 const app = express();
 const PORT = 3000;
@@ -30,6 +32,31 @@ app.use(express.static(path.join(__dirname, "public"), {
 app.get("/", async (req, res) => {
     res.sendFile(path.join(__dirname, "public", "login.html"));
 });
+
+const options = {
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'User API',
+      version: '1.0.0',
+      description: 'API documentation for user management',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Development server',
+      },
+    ],
+  },
+  apis: ['./public/*.js'],
+};
+
+const spacs = swaggerjsdoc(options)
+app.use(
+  "/api-docs",
+  swaggerui.serve,
+  swaggerui.setup(spacs)
+)
 
 app.post("/api/register", async (req, res) => {
   const { name, password } = req.body;

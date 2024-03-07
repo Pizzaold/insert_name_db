@@ -1,3 +1,39 @@
+/**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     summary: Login as a user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: JWT token for authentication
+ *       401:
+ *         description: Invalid username or password
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Failed to login
+ */
+
 import { BASE_URL } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
